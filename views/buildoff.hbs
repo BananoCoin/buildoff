@@ -1,0 +1,46 @@
+<table class="w100pct">
+  <tr>
+    <td colspan=3>
+      <h1>Welcome to the Nano Banano buildoff!</h1>
+      <hr>
+      <small>Which is totally not a scam</small>
+      <hr>
+      <strong>Free NFTS for every entry!</strong>
+      <hr>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <button id="allProjectsButton" disabled onclick="showAllProjects();return false;">
+        All Projects
+      </button>
+    </td>
+    <td>
+      <button id="registerButton" disabled onclick="showRegister();return false;">
+        Register
+      </button>
+    </td>
+  </tr>
+  <tr id="allProjects" class="display_none">
+    <td colspan=3>
+      <h1>All Projects</h1>
+      {{#each projects}}
+        <h2>Project: {{this.name}}</h2>
+        <a target="_blank" href="{{this.url}}">{{this.name}} Git Repo [{{this.url}}]</a>
+      {{/each}}
+    </td>
+  </tr>
+  <tr id="register" class="display_none">
+    <td colspan=3>
+      <h1>Your Project</h1>
+      <form id="form" method="post">
+        Your Project Name<br>
+        <input id="projectName" type="text" name="projectName" /><br>
+        URL of Your Project's Github Repo<br>
+        <input id="projectRepoUrl" type="text" name="projectRepoUrl" /><br>
+        <input type="submit" onclick="submitForm();return false;" /><br>
+      </form>
+    </td>
+  </tr>
+</table>
+<script type="module" src="js/views/buildoff.js"></script>
