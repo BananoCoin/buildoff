@@ -1,0 +1,50 @@
+html,
+table,
+tbody,
+tr,
+td,
+span,
+form,
+ul,
+li {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.5vmin;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+span, form, ul, li, p {
+  background-color: green;
+  color: white;
+}
+
+button {
+  background-color: green;
+  color: white;
+  border-color: white;
+}
+
+button:disabled,
+button[disabled] {
+  background-color: darkgray;
+  color: gray;
+  border-color: gray;
+}
+
+html {}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.w100pct {
+  width: 100%;
+}
+
+.display_none {
+  display: none;
+}

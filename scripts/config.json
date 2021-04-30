@@ -1,0 +1,7 @@
+{
+  "web": {
+    "port": "8787"
+  },
+  "dataDir": "data",
+  "cookieSecret": ""
+}
