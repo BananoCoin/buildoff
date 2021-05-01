@@ -43,6 +43,12 @@ body {
   background-color: black;
 }
 
+hr {
+  border: 0;
+  height: 0.1vmin;
+  background-image: linear-gradient(to right, rgba(256, 256, 256, 0), rgba(256, 256, 256, 0.75), rgba(256, 256, 256, 0));
+}
+
 .w100pct {
   width: 100%;
 }
@@ -58,4 +64,21 @@ body {
 .size95 {
   width: 95vw;
   height: 95vh;
+}
+
+.exit_link {
+  text-decoration: none;
+  color: #FFF;
+}
+
+.exit_link:visited {
+  color: #FFF;
+}
+
+.exit_link:active {
+  color: #777;
+}
+
+.exit_link:hover {
+  color: #777;
 }

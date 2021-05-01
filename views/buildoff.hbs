@@ -29,9 +29,11 @@
   <tr id="allProjects" class="display_none">
     <td colspan=3>
       <h1>All Projects</h1>
+      <hr>
       {{#each projects}}
         <h2>Project: {{this.name}}</h2>
-        <a target="_blank" href="{{this.url}}">{{this.name}} Git Repo [{{this.url}}]</a>
+        <a class="exit_link" target="_blank" href="{{this.url}}">{{this.name}} Git Repo [{{this.url}}]</a>
+        <hr>
       {{/each}}
     </td>
   </tr>
