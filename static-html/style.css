@@ -39,6 +39,8 @@ html {}
 body {
   padding: 0;
   margin: 0;
+  color: white;
+  background-color: black;
 }
 
 .w100pct {
@@ -47,4 +49,13 @@ body {
 
 .display_none {
   display: none;
+}
+
+.margin_auto {
+  margin: auto;
+}
+
+.size95 {
+  width: 95vw;
+  height: 95vh;
 }

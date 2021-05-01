@@ -1,0 +1,35 @@
+
+
+#stars1 {
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  animation: animStar 1s linear infinite;
+}
+
+#stars2 {
+  overflow: hidden;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  animation: animStar 2s linear infinite;
+}
+
+#stars3 {
+  overflow: hidden;
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  animation: animStar 3s linear infinite;
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0vh);
+  }
+
+  to {
+    transform: translateY(95vh);
+  }
+}
