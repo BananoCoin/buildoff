@@ -16,3 +16,4 @@ remove:
 change:
 - do not display contact info on project page.
 - encrypt the data on disk.
+- Team lead may stay anonymous, he just needs to verify with banano team.
