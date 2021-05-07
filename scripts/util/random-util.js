@@ -122,6 +122,10 @@ const getRandomArrayElt = (array) => {
   return array[ix];
 };
 
+const getRandomHex16 = () => {
+  return crypto.randomBytes(16).toString('hex');
+};
+
 const getRandomHex32 = () => {
   return crypto.randomBytes(32).toString('hex');
 };
@@ -137,5 +141,6 @@ module.exports.getTwoRandomArrayElts = getTwoRandomArrayElts;
 module.exports.shuffle = shuffle;
 module.exports.getRandom = getRandom;
 module.exports.getRandomInt = getRandomInt;
+module.exports.getRandomHex16 = getRandomHex16;
 module.exports.getRandomHex32 = getRandomHex32;
 module.exports.getRandomHex33 = getRandomHex33;

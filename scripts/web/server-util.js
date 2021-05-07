@@ -13,13 +13,32 @@ const crypto = require('crypto');
 const dateUtil = require('../util/date-util.js');
 
 // constants
+const algorithm = 'aes256';
+
+const AESCrypt = {};
+AESCrypt.decrypt = (cryptkey, iv, encryptdata) => {
+  const decipher = crypto.createDecipheriv('aes-256-cbc', cryptkey, iv);
+  return Buffer.concat([
+    decipher.update(Buffer.from(encryptdata, 'hex')),
+    decipher.final(),
+  ]);
+};
+
+AESCrypt.encrypt = (cryptkey, iv, cleardata) => {
+  const encipher = crypto.createCipheriv('aes-256-cbc', cryptkey, iv);
+  return Buffer.concat([
+    encipher.update(Buffer.from(cleardata, 'hex')),
+    encipher.final(),
+  ]).toString('hex');
+};
 
 // variables
 let config;
 let loggingUtil;
 let instance;
 let closeProgramFn;
-
+let iv;
+let key;
 
 // functions
 const init = async (_config, _loggingUtil) => {
@@ -34,6 +53,22 @@ const init = async (_config, _loggingUtil) => {
   config = _config;
   loggingUtil = _loggingUtil;
 
+  iv = crypto.randomBytes(16);
+  key = Buffer.from(config.cookieSecret);
+
+  {
+    // const cryptkey = crypto.createHash('sha256').update('Nixnogen').digest();
+    // const iv = Buffer.from('a2xhcgAAAAAAAAAA');
+    const buf = Buffer.from('Here is some data for the encrypt'); // 32 chars
+    const enc = AESCrypt.encrypt(key, iv, buf);
+    const dec = AESCrypt.decrypt(key, iv, enc);
+
+    console.warn('encrypt length: ', enc.length);
+    console.warn('encrypt in Base64:', enc.toString('base64'));
+    console.warn('decrypt all: ' + dec.toString('utf8'));
+  }
+
+
   await initWebServer();
 };
 
@@ -41,6 +76,8 @@ const deactivate = async () => {
   config = undefined;
   loggingUtil = undefined;
   closeProgramFn = undefined;
+  iv = undefined;
+  key = undefined;
   instance.close();
 };
 
@@ -98,15 +135,16 @@ const initWebServer = async () => {
       dataJson.projectContactInfo = req.body.projectContactInfo;
       dataJson.projectBananoAccount = req.body.projectBananoAccount;
       if (fs.existsSync(config.dataDir)) {
-        const fileData = JSON.stringify(dataJson);
+        const rawFileData = JSON.stringify(dataJson);
+        const encryptedData = AESCrypt.encrypt(key, iv, Buffer.from(rawFileData, 'utf-8'));
         const fileNm = crypto.createHash('sha256')
-            .update(fileData)
+            .update(rawFileData)
             .digest().toString('hex');
         const filePath = path.join(config.dataDir, fileNm);
-        loggingUtil.log(dateUtil.getDate(), '/', 'fileData', fileData);
+        loggingUtil.log(dateUtil.getDate(), '/', 'fileData', encryptedData);
         loggingUtil.log(dateUtil.getDate(), '/', 'filePath', filePath);
         const filePtr = fs.openSync(filePath, 'w');
-        fs.writeSync(filePtr, fileData);
+        fs.writeSync(filePtr, encryptedData);
         fs.closeSync(filePtr);
       }
     }
@@ -122,8 +160,9 @@ const initWebServer = async () => {
     if (fs.existsSync(config.dataDir)) {
       fs.readdirSync(config.dataDir).forEach((fileNm) => {
         const filePath = path.join(config.dataDir, fileNm);
-        const fileData = fs.readFileSync(filePath, 'UTF-8');
-        const fileJson = JSON.parse(fileData);
+        const rawFileData = fs.readFileSync(filePath, 'utf-8');
+        const decryptedData = AESCrypt.decrypt(key, iv, rawFileData);
+        const fileJson = JSON.parse(decryptedData);
         const json = {};
         json.name = fileJson.projectName;
         json.description = fileJson.projectDescription;
