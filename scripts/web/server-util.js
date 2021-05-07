@@ -109,7 +109,7 @@ const initWebServer = async () => {
   app.use(cookieParser(config.cookieSecret));
 
   app.post('/', async (req, res) => {
-    loggingUtil.log(dateUtil.getDate(), '/', 'req.body', req.body);
+    // loggingUtil.log(dateUtil.getDate(), '/', 'req.body', req.body);
     let valid = true;
     if (req.body.projectName === undefined) {
       loggingUtil.log(dateUtil.getDate(), '/', 'bad', 'projectName');
