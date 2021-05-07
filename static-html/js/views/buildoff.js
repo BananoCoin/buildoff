@@ -2,7 +2,7 @@ window.onLoad = () => {
   document.getElementById('stars1').style.boxShadow = getBoxShadow(8*4*2);
   document.getElementById('stars2').style.boxShadow = getBoxShadow(8*4);
   document.getElementById('stars3').style.boxShadow = getBoxShadow(8);
-  showAllProjects();
+  showRegister();
 };
 
 window.submitForm = () => {

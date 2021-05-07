@@ -3,7 +3,7 @@
 # installation instructions
 
   [installation instructions](docs/installation.md)
-  
+
 # todo
 
 add:
@@ -12,11 +12,6 @@ add:
 -   team lead contact info
 -   project description
 -   team lead banano account, for prize payment.
-
-remove:
-
--   Which is totally not a scam
--   Free NFTS for every entry!
 
 change:
 

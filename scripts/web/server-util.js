@@ -85,8 +85,10 @@ const initWebServer = async () => {
     loggingUtil.log(dateUtil.getDate(), '/', 'valid', valid);
     if (valid) {
       const dataJson = {};
-      dataJson.name = req.body.projectName;
-      dataJson.url = req.body.projectRepoUrl;
+      dataJson.projectName = req.body.projectName;
+      dataJson.projectDescription = req.body.projectDescription;
+      dataJson.projectContactInfo = req.body.projectContactInfo;
+      dataJson.projectBananoAccount = req.body.projectBananoAccount;
       if (fs.existsSync(config.dataDir)) {
         const fileData = JSON.stringify(dataJson);
         const fileNm = crypto.createHash('sha256')
