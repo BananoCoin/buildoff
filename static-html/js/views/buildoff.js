@@ -2,10 +2,17 @@ window.onLoad = () => {
   document.getElementById('stars1').style.boxShadow = getBoxShadow(8*4*2);
   document.getElementById('stars2').style.boxShadow = getBoxShadow(8*4);
   document.getElementById('stars3').style.boxShadow = getBoxShadow(8);
-  showRegister();
+
+  if (window.localStorage.show == 'showAllProjects') {
+    showAllProjects();
+  } else {
+    showRegister();
+  }
 };
 
 window.submitForm = () => {
+  alert('thank you for yor submission. you are now redirected to the project list.');
+  window.localStorage.show = 'showAllProjects';
   document.getElementById('form').submit();
 };
 
@@ -15,6 +22,7 @@ window.showAllProjects = () => {
 };
 
 window.showRegister = () => {
+  delete window.localStorage.show;
   document.querySelector('#registerButton').disabled = true;
   document.querySelector('#allProjectsButton').disabled = false; document.querySelector('#allProjects').className = 'display_none'; document.querySelector('#register').className = '';
 };

@@ -78,8 +78,16 @@ const initWebServer = async () => {
       loggingUtil.log(dateUtil.getDate(), '/', 'bad', 'projectName');
       valid = false;
     }
-    if (req.body.projectRepoUrl === undefined) {
-      loggingUtil.log(dateUtil.getDate(), '/', 'bad', 'projectRepoUrl');
+    if (req.body.projectDescription === undefined) {
+      loggingUtil.log(dateUtil.getDate(), '/', 'bad', 'projectDescription');
+      valid = false;
+    }
+    if (req.body.projectContactInfo === undefined) {
+      loggingUtil.log(dateUtil.getDate(), '/', 'bad', 'projectContactInfo');
+      valid = false;
+    }
+    if (req.body.projectBananoAccount === undefined) {
+      loggingUtil.log(dateUtil.getDate(), '/', 'bad', 'projectBananoAccount');
       valid = false;
     }
     loggingUtil.log(dateUtil.getDate(), '/', 'valid', valid);
@@ -116,7 +124,10 @@ const initWebServer = async () => {
         const filePath = path.join(config.dataDir, fileNm);
         const fileData = fs.readFileSync(filePath, 'UTF-8');
         const fileJson = JSON.parse(fileData);
-        data.projects.push(fileJson);
+        const json = {};
+        json.name = fileJson.projectName;
+        json.description = fileJson.projectDescription;
+        data.projects.push(json);
       });
     }
 

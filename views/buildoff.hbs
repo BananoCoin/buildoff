@@ -28,7 +28,9 @@
       <hr>
       {{#each projects}}
         <h2>Project: {{this.name}}</h2>
-        <a class="exit_link" target="_blank" href="{{this.url}}">{{this.name}} Git Repo [{{this.url}}]</a>
+        <p>
+          {{this.description}}
+        </p>
         <hr>
       {{/each}}
     </td>
@@ -38,17 +40,22 @@
       <h1>Your Project</h1>
       <form id="form" method="post">
         <h3>Public Information</h3>
-        Your Project Name<br>
-        <input id="projectName" type="text" name="projectName" /><br>
-        Your Project Description<br>
-        <input id="projectDescription" type="text" name="projectDescription" /><br>
+        <small>this will be public, and displayed on this site</small><br>
+        <p>
+          Your Project Name<br>
+          <input id="projectName" type="text" name="projectName" size="70" /><br>
+          Your Project Description<br>
+          <textarea id="projectDescription" name="projectDescription" rows="4" cols="50"></textarea><br>
+        </p>
         <hr>
         <h3>Internal (Private) Information</h3>
-        <small>this will be private, and only used for internal communication</small>
-        Team lead contact info<br>
-        <input id="projectContactInfo" type="textarea" name="projectContactInfo" /><br>
-        Team lead banano account (for prize payment)<br>
-        <input id="projectBananoAccount" type="textarea" name="projectBananoAccount" /><br>
+        <small>this will be private, and only used for internal communication</small><br>
+        <p>
+          Team lead contact info<br>
+          <textarea id="projectContactInfo" name="projectContactInfo" rows="4" cols="50"></textarea><br>
+          Team lead banano account (for prize payment)<br>
+          <input id="projectBananoAccount" type="textarea" name="projectBananoAccount" size="70" /><br>
+        </p>
         <input type="submit" onclick="submitForm();return false;" /><br>
       </form>
     </td>
