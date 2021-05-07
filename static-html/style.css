@@ -66,6 +66,11 @@ hr {
   height: 95vh;
 }
 
+.size50 {
+  width: 50vmin;
+  height: 50vmin;
+}
+
 .exit_link {
   text-decoration: none;
   color: #FFF;
