@@ -3,7 +3,9 @@
 const randomUtil = require('./util/random-util.js');
 
 const newConfig = {};
-newConfig.cookieSecret = randomUtil.getRandomHex16();
+newConfig.aes256 = {};
+newConfig.aes256.key = randomUtil.getRandomHex32();
+newConfig.aes256.iv = randomUtil.getRandomHex16();
 
 console.log('STARTED new config');
 console.log(JSON.stringify(newConfig, undefined, '\t'));

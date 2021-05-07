@@ -3,5 +3,8 @@
     "port": "8787"
   },
   "dataDir": "data",
-  "cookieSecret": ""
+  "aes256": {
+    "key": "",
+    "iv": ""
+  }
 }

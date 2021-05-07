@@ -53,8 +53,8 @@ const init = async (_config, _loggingUtil) => {
   config = _config;
   loggingUtil = _loggingUtil;
 
-  iv = crypto.randomBytes(16);
-  key = Buffer.from(config.cookieSecret);
+  iv = Buffer.from(config.aes256.iv, 'hex');
+  key = Buffer.from(config.aes256.key, 'hex');
 
   {
     // const cryptkey = crypto.createHash('sha256').update('Nixnogen').digest();

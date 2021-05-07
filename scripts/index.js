@@ -27,8 +27,11 @@ const init = async () => {
 
   overrideConfig();
 
-  if (config.cookieSecret == '') {
-    throw Error('cookieSecret is required in ./config.json');
+  if (config.aes256.key == '') {
+    throw Error(`aes256.key is required in ./config.json run 'npm run new-config;'`);
+  }
+  if (config.aes256.iv == '') {
+    throw Error(`aes256.key is required in ./config.json run 'npm run new-config;'`);
   }
 
   fs.mkdirSync(config.dataDir, {recursive: true});
